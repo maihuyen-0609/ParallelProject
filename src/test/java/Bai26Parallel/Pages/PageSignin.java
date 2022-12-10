@@ -20,6 +20,7 @@ public class PageSignin extends CommonPage {
     private By textPage=By.xpath("//h1[@class='text-center font-bold text-white text-6xl']");
     private By textPageOA=By.xpath("//div[@class='title-container']");
     private By alertMessage=By.xpath("//div[@class='p-toast p-component p-toast-top-right']");
+    private By alertMessageOA=By.xpath("//div[@role='alert']");
     private By textWelcome=By.xpath("//h1[normalize-space()='Welcome, admin!']");
     private By textWelcome1=By.xpath("//h1[normalize-space()='Welcome, IT-Mina!']");
     public PageDashboard Login(String account, String password) {
@@ -32,19 +33,7 @@ public class PageSignin extends CommonPage {
        // WebUI.waitForElementVisible(textWelcome);
         return new PageDashboard();
     }
-    public PageDashboard LoginFail(String account, String password) {
-        WebUI.openURL("http://172.18.0.246:9292/#/login");
-        WebUI.checkElementExist(textPage);
-        WebUI.setText(inputAccount,account);
-        WebUI.setText(inputPassword,password);
-        WebUI.clickElement(buttonLogin);
-        WebUI.waitForElementVisible(alertMessage);
-        boolean checkAlertError=WebUI.checkElementExist(alertMessage);
-        Assert.assertTrue(checkAlertError,"Error not display");
-        WebUI.verifyEquals(WebUI.getElementText(alertMessage), "login fail!\n" +
-                "Incorrect account or password","hic");
-        return new PageDashboard();
-    }
+
     public PageDashboard Loginwrongusername(String account, String password) {
         WebUI.openURL("http://172.18.0.246:9292/#/login");
         WebUI.checkElementExist(textPage);
@@ -55,7 +44,7 @@ public class PageSignin extends CommonPage {
         boolean checkAlertError=WebUI.checkElementExist(alertMessage);
         Assert.assertTrue(checkAlertError,"Error not display");
         WebUI.verifyEquals(WebUI.getElementText(alertMessage), "-1000002\n" +
-                "user not allowed to log in.","hic");
+                "user not allowed to log in345.","hic");
         return new PageDashboard();
     }
     public PageDashboard Loginwrongpassword(String account, String password) {
@@ -71,7 +60,7 @@ public class PageSignin extends CommonPage {
                 "username or password is incorrect","hic");
         return new PageDashboard();
     }
-    public PageDashboard LoginOA(String accountOA, String passwordOA) {
+    public PageDashboard LoginOASuccess(String accountOA, String passwordOA) {
         WebUI.openURL("http://172.18.0.246:9292/#/login");
         WebUI.clickElement(buttonOAAccount);
         DriverManager.getDriver().switchTo().frame(0);
@@ -80,9 +69,25 @@ public class PageSignin extends CommonPage {
         WebUI.setText(inputIDNumber,accountOA);
         WebUI.setText(inputPasswordOA,passwordOA);
         WebUI.clickElement(buttonLoginOA);
-        //WebUI.sleep(10);
+        WebUI.sleep(10);
         WebUI.waitForElementVisible(textWelcome1);
         return new PageDashboard();
     }
-
+    public PageDashboard LoginOAfail(String accountOA, String passwordOA) {
+        WebUI.openURL("http://172.18.0.246:9292/#/login");
+        WebUI.clickElement(buttonOAAccount);
+        DriverManager.getDriver().switchTo().frame(0);
+        WebUI.getElementText(textPageOA);
+        WebUI.verifyEquals(WebUI.getElementText(textPageOA).trim(),"Office management system");
+        WebUI.setText(inputIDNumber,accountOA);
+        WebUI.setText(inputPasswordOA,passwordOA);
+        WebUI.clickElement(buttonLoginOA);
+        WebUI.sleep(10);
+        WebUI.waitForElementVisible(alertMessageOA);
+        boolean checkAlertError=WebUI.checkElementExist(alertMessageOA);
+        Assert.assertTrue(checkAlertError,"Error not display");
+        WebUI.verifyEquals(WebUI.getElementText(alertMessageOA), "-1000001\n" +
+                "username or password is incorrect","hic");
+        return new PageDashboard();
+    }
 }

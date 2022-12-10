@@ -5,15 +5,18 @@
     <test name="Regression Parallel CHROME" parallel="methods">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="Bai26Parallel.Testcase.TestcaseSignin"/>
+            <class name="Bai26Parallel.Testcase.TestcaseSignin">
+                <methods><include name="LoginOASuccess"></include></methods>
+                <methods><include name="LoginFailed1"></include></methods>
+            </class>
         </classes>
     </test>
 
-    <test name="Regression Parallel EDGE" parallel="methods">
-        <parameter name="browser" value="edge"></parameter>
-        <classes>
-            <class name="Bai26Parallel.Testcase.TestcaseSignin"/>
-        </classes>
-    </test>
+<!--    <test name="Regression Parallel EDGE" parallel="methods">-->
+<!--        <parameter name="browser" value="edge"></parameter>-->
+<!--        <classes>-->
+<!--            <class name="Bai26Parallel.Testcase.TestcaseSignin"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
 </suite>

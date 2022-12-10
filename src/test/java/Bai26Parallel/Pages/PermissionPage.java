@@ -28,7 +28,7 @@ public class PermissionPage {
         WebUI.setText(inputRemark, remark);
         WebUI.clickElement(buttonSubmit);
         WebUI.getElementText(textSuccess);
-        Assert.assertEquals(WebUI.getElementText(textSuccess).trim(), "Success", "Text sai");
+        Assert.assertEquals(WebUI.getElementText(textSuccess).trim(), "Success123", "Text sai");
         WebUI.clickElement(search);
         WebUI.setText(inputsearch, searchper);
         WebUI.clickElement(buttonApply);

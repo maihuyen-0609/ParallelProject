@@ -56,7 +56,7 @@ public class CaptureHelpers extends ScreenRecorder {
         // Hàm Start record video
         public static void startRecord(String methodName) {
             //Tạo thư mục để lưu file video vào
-            File file = new File("./recordings/");
+            File file = new File("target/recordings/");
             //lấy kích thước màn hình
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             int width = screenSize.width;
@@ -98,12 +98,12 @@ public class CaptureHelpers extends ScreenRecorder {
     public static void takescreenshot(ITestResult result){
         TakesScreenshot ts=(TakesScreenshot) DriverManager.getDriver();
         File source=ts.getScreenshotAs(OutputType.FILE);
-        File theDir=new File("./Screenshots");
+        File theDir=new File("target/screenshots");
         if (!theDir.exists()){
             theDir.mkdirs();
         }
         try {
-            FileHandler.copy(source,new File("./Screenshots/"+result.getName()+".png"));
+            FileHandler.copy(source,new File("target/screenshots/"+result.getName()+".png"));
         }catch (IOException e){
             throw new RuntimeException(e);
         }

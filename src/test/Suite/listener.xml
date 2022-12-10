@@ -3,6 +3,8 @@
     <test name="listener">
         <classes>
             <class name="Bai26Parallel.Testcase.LearnTestListener"></class>
+            <class name="Bai26Parallel.Testcase.TestcasePermission"></class>
+
         </classes>
     </test>
 </suite>

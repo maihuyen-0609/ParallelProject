@@ -1,6 +1,7 @@
 package common;
 
 import Bai26Parallel.Pages.CommonPage;
+import listener.Testlistener;
 import salary.com.Driver.DriverManager;
 import salary.com.Helper.CaptureHelpers;
 import salary.com.Helper.PropertiesHelper;
@@ -11,6 +12,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+@Listeners(Testlistener.class)
 
 public class BaseTestNew extends CommonPage {
     public BaseTestNew(){

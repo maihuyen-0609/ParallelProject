@@ -7,6 +7,7 @@ import common.BaseTestNew;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import salary.com.utils.Log;
 
 public class TestcasePermission extends BaseTestNew{
     private PageSignin pageLogin;
@@ -26,6 +27,7 @@ public class TestcasePermission extends BaseTestNew{
         pageDashboard=pageLogin.Login(username, password);
         permissionPage = pageDashboard.openPermissionpage();
         permissionPage.AddPermission("Mina1", "Mina1", "Mina", "Mina1");
+        Log.info(username+password);
     }
     @Test
     @Parameters({"username","password"})
@@ -33,5 +35,7 @@ public class TestcasePermission extends BaseTestNew{
         pageDashboard = pageLogin.Login(username, password);
         permissionPage = pageDashboard.openPermissionpage();
         permissionPage.DeletePermission();
+        Log.info(username+password);
     }
+
 }
